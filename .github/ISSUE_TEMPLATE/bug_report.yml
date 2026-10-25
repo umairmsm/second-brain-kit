@@ -1,0 +1,41 @@
+name: Bug Report
+description: Create a report to help us fix an issue with second-brain-kit or scripts.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug! Please ensure you are not posting personal data, passwords, or private environment variables.
+  - type: input
+    id: version
+    attributes:
+      label: second-brain-kit Version / Commit
+      description: What commit or version are you running?
+      placeholder: e.g. v0.1.0 or commit sha
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - Dashboard Generator (scripts/generate-dashboard.py)
+        - Watchdog / Morning Brief (scripts/homelab_watchdog.py, scripts/morning_brief.py)
+        - Vault Structure / PARA Conventions
+        - Hermes Assistant (SOUL.md, systemd hardening)
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe what occurred versus what was expected.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Steps and environment details (Python version, OS, client app).
+    validations:
+      required: true

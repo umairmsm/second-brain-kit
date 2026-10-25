@@ -1,52 +1,34 @@
-# MANIFEST.txt — Explicit allowlist of files for second-brain-kit
-# Any file not listed here is strictly excluded from this repository.
-
-# Universal Agent Contracts
 AGENTS.md
-agent.md
-CLAUDE.md
-GEMINI.md
-.cursorrules
-
-# Governance & Metadata
-.gitignore
-README.md
-LICENSE
-SECURITY.md
-CONTRIBUTING.md
-CODE_OF_CONDUCT.md
 CHANGELOG.md
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+.github/ISSUE_TEMPLATE/bug_report.yml
+.github/ISSUE_TEMPLATE/feature_request.yml
+.github/workflows/ci.yml
+.gitignore
+hermes/config.yaml.example
+hermes/SOUL.md
+hermes/systemd/50-hardening.conf.example
+hermes/systemd/hermes-gateway.service.example
+LICENSE
 MANIFEST.txt
-
-# Automation Scripts (scripts/)
+README.md
 scripts/generate-dashboard.py
 scripts/homelab_watchdog.py
 scripts/morning_brief.py
-
-# Hermes Setup & Hardening (hermes/)
-hermes/SOUL.md
-hermes/config.yaml.example
-hermes/systemd/hermes-gateway.service.example
-hermes/systemd/50-hardening.conf.example
-
-# Starter PARA Vault (vault/)
+SECURITY.md
 vault/00-Conventions.md
 vault/00-Dashboard.md
-vault/AGENTS.md
-vault/CLAUDE.md
-vault/GEMINI.md
-vault/0_Inbox/README.md
 vault/0_Inbox/2026-10-26-welcome-note.md
-vault/1_Projects/README.md
+vault/0_Inbox/README.md
 vault/1_Projects/PROJECT-SAMPLE.md
-vault/2_Areas_Infrastructure/README.md
+vault/1_Projects/README.md
 vault/2_Areas_Infrastructure/Backup-Policy.md
+vault/2_Areas_Infrastructure/README.md
 vault/3_Areas_Operations/README.md
 vault/3_Areas_Operations/Runbooks/Hermes-Gateway-Security.md
-vault/4_Daily-Logs/README.md
 vault/4_Daily-Logs/2026-10-26.md
+vault/4_Daily-Logs/README.md
 vault/5_Resources_Knowledge/README.md
 vault/7_Archive/README.md
-
-# Continuous Integration (.github/)
-.github/workflows/ci.yml
+vault/AGENTS.md

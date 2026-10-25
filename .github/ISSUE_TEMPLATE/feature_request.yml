@@ -1,0 +1,29 @@
+name: Feature Request / New Runbook
+description: Propose a new runbook, script improvement, or integration for second-brain-kit.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggesting an addition to second-brain-kit! Please outline the use case and how it benefits multi-agent setups.
+  - type: input
+    id: title
+    attributes:
+      label: Feature / Runbook Title
+      placeholder: e.g. feat(runbooks): Add WireGuard multi-node mesh runbook
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What challenge or gap in multi-agent knowledge management does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution / Architecture
+      description: What files or scripts should be added or updated?
+    validations:
+      required: true
