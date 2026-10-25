@@ -1,0 +1,10 @@
+[Service]
+# OS Security Hardening Drop-in
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=%h/.hermes %h/vault/0_Inbox
+PrivateTmp=true
+UMask=0077
+MemoryMax=4G
+TasksMax=512

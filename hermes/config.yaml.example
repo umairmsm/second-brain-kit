@@ -1,0 +1,41 @@
+# config.yaml.example — Hermes Agent Configuration
+# Copy this file to ~/.hermes/config.yaml and configure your environment variables.
+
+agent:
+  name: "Homelab Assistant"
+  max_turns: 120
+  api_max_retries: 2
+
+security:
+  allow_lazy_installs: false
+  adopt_external_logins: false
+
+telegram:
+  enabled: true
+  bot_token: "${TELEGRAM_BOT_TOKEN}"
+  allowed_users:
+    - 123456789  # Replace with your numerical Telegram User ID
+  unauthorized_dm_behavior: "ignore"
+
+platform_toolsets:
+  telegram:
+    - web_search
+    - file_reader
+    - second_brain_mcp
+    - brain_inbox_mcp
+    # Notice: terminal and bash execution are deliberately excluded for chat security
+
+mcp_servers:
+  second_brain:
+    command: "npx"
+    args:
+      - "@modelcontextprotocol/server-filesystem"
+      - "/path/to/your/vault"
+    mode: "read-only"
+
+  brain_inbox:
+    command: "npx"
+    args:
+      - "@modelcontextprotocol/server-filesystem"
+      - "/path/to/your/vault/0_Inbox"
+    mode: "read-write"
