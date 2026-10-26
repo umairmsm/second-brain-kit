@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" width="100%" height="100%" style="background:#0B0E16; border-radius:12px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0E16"/>
+      <stop offset="50%" stop-color="#101524"/>
+      <stop offset="100%" stop-color="#0B0E16"/>
+    </linearGradient>
+    <linearGradient id="ambientGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E1E2E"/>
+      <stop offset="100%" stop-color="#11111B"/>
+    </linearGradient>
+    <linearGradient id="vaultGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064E3B"/>
+      <stop offset="100%" stop-color="#022C22"/>
+    </linearGradient>
+    <linearGradient id="codingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+
+    <!-- Ambient Keyframe Animations -->
+    <style>
+      @keyframes pulseBorder {
+        0%, 100% { stroke: #2A3652; }
+        50% { stroke: #10B981; }
+      }
+      @keyframes flowDash {
+        to { stroke-dashoffset: -40; }
+      }
+      @keyframes shieldPulse {
+        0%, 100% { filter: drop-shadow(0 0 4px #10B981); opacity: 0.9; }
+        50% { filter: drop-shadow(0 0 12px #34D399); opacity: 1; }
+      }
+      .window-border { animation: pulseBorder 6s ease-in-out infinite; }
+      .flow-line { stroke-dasharray: 8 6; animation: flowDash 2s linear infinite; }
+      .shield-glow { animation: shieldPulse 3s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <!-- Window Container -->
+  <rect x="2" y="2" width="1196" height="456" rx="12" fill="url(#bgGrad)" stroke="#2A3652" stroke-width="2" class="window-border"/>
+
+  <!-- Terminal Window Chrome -->
+  <path d="M 2 14 Q 2 2 14 2 L 1186 2 Q 1198 2 1198 14 L 1198 42 L 2 42 Z" fill="#141A28"/>
+  <line x1="2" y1="42" x2="1198" y2="42" stroke="#2A3652" stroke-width="1.5"/>
+
+  <!-- Window Control Buttons -->
+  <circle cx="24" cy="22" r="6" fill="#EF4444"/>
+  <circle cx="44" cy="22" r="6" fill="#F59E0B"/>
+  <circle cx="64" cy="22" r="6" fill="#10B981"/>
+
+  <!-- Window Title -->
+  <text x="50%" y="26" text-anchor="middle" fill="#94A3B8" font-size="13" font-weight="600" letter-spacing="0.5">second-brain-kit : air-gapped-multi-agent-vault.md</text>
+
+  <!-- Live Status Badge (Top Right) -->
+  <g class="shield-glow" transform="translate(1010, 13)">
+    <rect width="164" height="20" rx="10" fill="#064E3B" stroke="#10B981" stroke-width="1"/>
+    <circle cx="12" cy="10" r="4" fill="#10B981"/>
+    <text x="24" y="14" fill="#A7F3D0" font-size="10.5" font-weight="700" letter-spacing="0.5">AIR-GAP MCP ACTIVE</text>
+  </g>
+
+  <!-- ==================== FLOW CONNECTOR LINES ==================== -->
+  <!-- Ambient Assistant to Shield Barrier -->
+  <path d="M 360 220 L 450 220" stroke="#06B6D4" stroke-width="2.5" class="flow-line"/>
+  <polygon points="452,220 442,215 442,225" fill="#06B6D4"/>
+  <rect x="365" y="194" width="80" height="18" rx="4" fill="#0B0E16" stroke="#083344" stroke-width="1"/>
+  <text x="405" y="206" text-anchor="middle" fill="#67E8F9" font-size="9" font-weight="600">INBOX ONLY</text>
+
+  <!-- Coding Agents to Vault (Read & Update) -->
+  <path d="M 840 220 L 750 220" stroke="#3B82F6" stroke-width="2.5" class="flow-line"/>
+  <polygon points="748,220 758,215 758,225" fill="#3B82F6"/>
+  <rect x="755" y="194" width="80" height="18" rx="4" fill="#0B0E16" stroke="#1E293B" stroke-width="1"/>
+  <text x="795" y="206" text-anchor="middle" fill="#93C5FD" font-size="9" font-weight="600">READ PROJECTS</text>
+
+  <!-- ==================== NODE 1: AMBIENT ASSISTANT ==================== -->
+  <g transform="translate(70, 80)">
+    <rect width="290" height="290" rx="10" fill="url(#ambientGrad)" stroke="#06B6D4" stroke-width="1.8"/>
+    <!-- Header -->
+    <rect width="290" height="42" rx="10" fill="#083344" opacity="0.5"/>
+    <text x="18" y="26" fill="#22D3EE" font-size="11" font-weight="800" letter-spacing="1">INGRESS • AMBIENT ASSISTANT</text>
+    <rect x="220" y="12" width="55" height="18" rx="9" fill="#0F172A" stroke="#06B6D4" stroke-width="1"/>
+    <text x="247" y="24" text-anchor="middle" fill="#67E8F9" font-size="9" font-weight="600">HERMES</text>
+
+    <!-- Main Title -->
+    <text x="18" y="72" fill="#F8FAFC" font-size="20" font-weight="700">Chat &amp; Voice Intake</text>
+    <text x="18" y="94" fill="#94A3B8" font-size="12">Telegram / Matrix / Mobile Voice</text>
+
+    <!-- Separation Line -->
+    <line x1="18" y1="110" x2="272" y2="110" stroke="#334155" stroke-width="1"/>
+
+    <!-- Checklist -->
+    <g transform="translate(18, 130)" font-size="12" fill="#CBD5E1">
+      <text y="0" font-weight="600" fill="#22D3EE">●</text>
+      <text x="16" y="0">Always-on remote communication</text>
+      
+      <text y="28" font-weight="600" fill="#22D3EE">●</text>
+      <text x="16" y="28">Captures raw ideas &amp; voice memos</text>
+      
+      <text y="56" font-weight="600" fill="#EF4444">✗</text>
+      <text x="16" y="56" fill="#FCA5A5">Zero shell or bash execution</text>
+      
+      <text y="84" font-weight="600" fill="#EF4444">✗</text>
+      <text x="16" y="84" fill="#FCA5A5">Cannot overwrite project files</text>
+      
+      <text y="112" font-weight="600" fill="#10B981">✓</text>
+      <text x="16" y="112" fill="#6EE7B7">Appends only to 0_Inbox/</text>
+    </g>
+  </g>
+
+  <!-- ==================== NODE 2: THE AIR-GAPPED PARA VAULT ==================== -->
+  <g transform="translate(450, 80)">
+    <rect width="300" height="290" rx="10" fill="url(#vaultGrad)" stroke="#10B981" stroke-width="2"/>
+    <!-- Header -->
+    <rect width="300" height="42" rx="10" fill="#064E3B" opacity="0.6"/>
+    <text x="20" y="26" fill="#A7F3D0" font-size="11" font-weight="800" letter-spacing="1">SOURCE OF TRUTH • PARA VAULT</text>
+    <rect x="220" y="12" width="65" height="18" rx="9" fill="#022C22" stroke="#10B981" stroke-width="1"/>
+    <text x="252" y="24" text-anchor="middle" fill="#6EE7B7" font-size="9" font-weight="700">OBSIDIAN</text>
+
+    <!-- Main Title -->
+    <text x="20" y="72" fill="#FFFFFF" font-size="20" font-weight="700">Structured Markdown</text>
+    <text x="20" y="94" fill="#6EE7B7" font-size="12">Plain Files • Zero DB Lock-in</text>
+
+    <!-- Folder Hierarchy List -->
+    <g transform="translate(20, 118)" font-size="11.5" fill="#E2E8F0">
+      <rect x="0" y="0" width="260" height="24" rx="4" fill="#064E3B" stroke="#047857" stroke-width="1"/>
+      <text x="10" y="16" fill="#FBBF24">📁</text>
+      <text x="32" y="16" font-family="monospace" font-weight="bold">0_Inbox/</text>
+      <text x="110" y="16" fill="#94A3B8" font-size="10.5">Unvetted external notes</text>
+
+      <rect x="0" y="28" width="260" height="24" rx="4" fill="#064E3B" stroke="#047857" stroke-width="1"/>
+      <text x="10" y="44" fill="#60A5FA">📁</text>
+      <text x="32" y="44" font-family="monospace" font-weight="bold">1_Projects/</text>
+      <text x="110" y="44" fill="#94A3B8" font-size="10.5">Active P0/P1 deliverables</text>
+
+      <rect x="0" y="56" width="260" height="24" rx="4" fill="#064E3B" stroke="#047857" stroke-width="1"/>
+      <text x="10" y="72" fill="#A78BFA">📁</text>
+      <text x="32" y="72" font-family="monospace" font-weight="bold">2_Areas/</text>
+      <text x="110" y="72" fill="#94A3B8" font-size="10.5">Homelab runbooks &amp; infra</text>
+
+      <rect x="0" y="84" width="260" height="24" rx="4" fill="#064E3B" stroke="#047857" stroke-width="1"/>
+      <text x="10" y="100" fill="#34D399">📁</text>
+      <text x="32" y="100" font-family="monospace" font-weight="bold">3_Resources/</text>
+      <text x="110" y="100" fill="#94A3B8" font-size="10.5">Reference cheat sheets</text>
+
+      <rect x="0" y="112" width="260" height="24" rx="4" fill="#064E3B" stroke="#047857" stroke-width="1"/>
+      <text x="10" y="128" fill="#94A3B8">📁</text>
+      <text x="32" y="128" font-family="monospace" font-weight="bold">4_Archives/</text>
+      <text x="110" y="128" fill="#94A3B8" font-size="10.5">Cold completed projects</text>
+    </g>
+  </g>
+
+  <!-- ==================== NODE 3: CODING AGENTS ==================== -->
+  <g transform="translate(840, 80)">
+    <rect width="290" height="290" rx="10" fill="url(#codingGrad)" stroke="#3B82F6" stroke-width="1.8"/>
+    <!-- Header -->
+    <rect width="290" height="42" rx="10" fill="#1E3A8A" opacity="0.4"/>
+    <text x="18" y="26" fill="#60A5FA" font-size="11" font-weight="800" letter-spacing="1">EGRESS • CODING AGENTS</text>
+    <rect x="200" y="12" width="75" height="18" rx="9" fill="#1E293B" stroke="#3B82F6" stroke-width="1"/>
+    <text x="237" y="24" text-anchor="middle" fill="#93C5FD" font-size="9" font-weight="600">ENGINEERING</text>
+
+    <!-- Main Title -->
+    <text x="18" y="72" fill="#F8FAFC" font-size="20" font-weight="700">Autonomous Builders</text>
+    <text x="18" y="94" fill="#93C5FD" font-size="12">Claude Code / Antigravity / Cursor</text>
+
+    <!-- Separation Line -->
+    <line x1="18" y1="110" x2="272" y2="110" stroke="#334155" stroke-width="1"/>
+
+    <!-- Checklist -->
+    <g transform="translate(18, 130)" font-size="12" fill="#CBD5E1">
+      <text y="0" font-weight="600" fill="#60A5FA">●</text>
+      <text x="16" y="0">Shared memory eliminates amnesia</text>
+      
+      <text y="28" font-weight="600" fill="#60A5FA">●</text>
+      <text x="16" y="28">Reads conventions in 00-Conventions</text>
+      
+      <text y="56" font-weight="600" fill="#60A5FA">●</text>
+      <text x="16" y="56">Executes engineering sprints</text>
+      
+      <text y="84" font-weight="600" fill="#10B981">✓</text>
+      <text x="16" y="84" fill="#6EE7B7">Auto-generates daily dashboard</text>
+      
+      <text y="112" font-weight="600" fill="#10B981">✓</text>
+      <text x="16" y="112" fill="#6EE7B7">Synchronizes multi-agent standup</text>
+    </g>
+  </g>
+
+  <!-- Bottom Proof Bar -->
+  <rect x="70" y="388" width="1060" height="36" rx="6" fill="#141A28" stroke="#2A3652" stroke-width="1"/>
+  <text x="50%" y="411" text-anchor="middle" fill="#94A3B8" font-size="11.5" font-weight="600" letter-spacing="0.4">
+    <tspan fill="#10B981">●</tspan> AIR-GAPPED MCP BARRIER   |   
+    <tspan fill="#06B6D4">●</tspan> ZERO PROMPT INJECTION RISK   |   
+    <tspan fill="#3B82F6">●</tspan> 100% PLAIN MARKDOWN   |   
+    <tspan fill="#F59E0B">●</tspan> NO PROPRIETARY DATABASE LOCK-IN
+  </text>
+</svg>

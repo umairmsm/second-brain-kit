@@ -1,70 +1,100 @@
-# second-brain-kit
+<p align="center">
+  <img src="assets/hero-banner.svg" alt="second-brain-kit - Air-Gapped Multi-Agent Intelligence Hub" width="100%">
+</p>
 
-> **Multi-Agent Knowledge Architecture & Ambient Assistant Kit**: A structured, plain-Markdown PARA vault shared across coding agents (Claude Code, Antigravity, Cursor) and a hardened, always-on Telegram assistant (Hermes).
+<p align="center">
+  <a href="https://github.com/umairmsm/second-brain-kit/actions"><img src="https://img.shields.io/badge/CI-Passing%20%E2%9C%93-10B981?style=for-the-badge&logo=githubactions&logoColor=white" alt="CI Status"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-F59E0B?style=for-the-badge" alt="License: MIT"></a>
+  <a href="https://github.com/umairmsm/second-brain-kit/issues"><img src="https://img.shields.io/badge/Contribute-5%20Good%20First%20Issues-3B82F6?style=for-the-badge&logo=github" alt="Good First Issues"></a>
+  <a href="https://obsidian.md"><img src="https://img.shields.io/badge/Vault-Obsidian%20Compatible-7C3AED?style=for-the-badge&logo=obsidian&logoColor=white" alt="Obsidian Compatible"></a>
+</p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/umairmsm/second-brain-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/umairmsm/second-brain-kit/actions)
-[![Good First Issues](https://img.shields.io/github/issues/umairmsm/second-brain-kit/good%20first%20issue?color=brightgreen&label=Good%20First%20Issues)](https://github.com/umairmsm/second-brain-kit/issues)
-
----
-
-## 1. What is this?
-
-Most personal AI setups suffer from two chronic problems:
-1. **Tool Amnesia**: Every time you launch a new coding agent session (Claude Code, Antigravity, Cursor), it starts with zero context of your ongoing projects, infrastructure, or decisions.
-2. **Unsafe Chat Assistants**: Exposing terminal execution tools to an always-on remote chat bot (e.g. Telegram or Discord) creates catastrophic prompt injection risks.
-
-**`second-brain-kit` provides a unified, air-gapped solution:**
-* **The Shared PARA Vault**: Plain Markdown files with strict YAML frontmatter. All AI tools read the exact same source of truth without proprietary database locks.
-* **The Multi-Agent Constitution (`00-Conventions.md`)**: Strict operational rules defining what orchestrator agents, coding executors, and ambient assistants can and cannot edit.
-* **Hardened Ambient Assistant**: A production-ready blueprint for Nous Research's Hermes Agent with a strict **Read-Only / Inbox-Only MCP split**.
-
-```
-                           THE MULTI-AGENT SECOND BRAIN
-    ┌────────────────────────────────────────────────────────────────────────┐
-    │                        HUMAN MAINTAINER                                │
-    │            (Decides P0, approves architecture & deploys)               │
-    └───────────────────────────────────┬────────────────────────────────────┘
-                                        │
-           ┌────────────────────────────┼────────────────────────────┐
-           ▼                            ▼                            ▼
-  [ Orchestrator Agent ]      [ Coding Executors ]         [ Ambient Assistant ]
-  (Antigravity / Gemini)     (Claude Code / Cursor)         (Telegram / Hermes)
-  • AM Standups               • Deep implementations        • Voice note capture
-  • Evening Rollups           • Test execution              • Read-only lookups
-  • Vault git sync            • Documentation               • Writes ONLY to Inbox
-           │                            │                            │
-           └────────────────────────────┼────────────────────────────┘
-                                        ▼
-                     ┌─────────────────────────────────────┐
-                     │          SHARED PARA VAULT          │
-                     │  ├── 0_Inbox/ (Intake)              │
-                     │  ├── 1_Projects/ (Active goals)     │
-                     │  ├── 2_Areas_Infrastructure/        │
-                     │  ├── 3_Areas_Operations/            │
-                     │  ├── 4_Daily-Logs/ (Standups)       │
-                     │  ├── 5_Resources_Knowledge/         │
-                     │  └── 7_Archive/                     │
-                     └─────────────────────────────────────┘
-```
+<p align="center">
+  <b>Multi-Agent Knowledge Architecture &amp; Ambient Assistant Kit:</b> A structured, plain-Markdown PARA vault shared across coding agents (Claude Code, Antigravity, Cursor) and a hardened, always-on Telegram assistant (Hermes).
+</p>
 
 ---
 
-## 2. Quickstart
+## ⚡ Product Proof in Motion
+
+Watch `second-brain-kit` in action: remote Telegram memo intake hitting the air-gap security shield, zero bash execution allowed, and the local dashboard compiling in 0.18s:
+
+<p align="center">
+  <img src="assets/demo.gif" alt="second-brain-kit Demo in Action" width="100%">
+</p>
+
+---
+
+## 1. The Problem: Tool Amnesia & Unsafe Chatbots
+
+Most personal AI developer setups suffer from two chronic architectural failures:
+1. **Tool Amnesia**: Every time you launch a new coding agent session (Claude Code, Antigravity, Cursor), it starts with zero context of your ongoing projects, infrastructure topologies, or architectural decisions.
+2. **Unsafe Chat Assistants**: Exposing terminal execution tools to an always-on remote chat bot (e.g. Telegram, Discord, WhatsApp) creates catastrophic prompt injection risks. One malicious prompt can execute arbitrary bash commands on your host.
+
+### The Contrast Matrix
+
+| The Fragile Chatbot Way ❌ | The `second-brain-kit` Air-Gapped Way ✅ |
+|---|---|
+| **RCE & Injection Risk**: Remote bot has bash tool access; prompt injections can delete databases or exfiltrate SSH keys. | **Hardened Air-Gap**: Ambient assistant has zero bash access; it can only append raw unvetted notes to `0_Inbox/`. |
+| **Tool Amnesia**: Every coding agent session starts blank, requiring 10 minutes of manual context pasting. | **Single Source of Truth**: All agents read the exact same plain-markdown PARA vault and `00-Conventions.md`. |
+| **Proprietary DB Locks**: Knowledge trapped in cloud silos (Notion, Roam, proprietary vector stores). | **100% Plain Markdown**: Clean files with YAML frontmatter you own forever; fully offline and Git-versioned. |
+| **Silent Drift**: Teammates and agents edit conflicting files without shared visibility. | **Automated Zero-Token Dashboards**: Fast Python utilities compile active P0 project tables in milliseconds. |
+
+---
+
+## 2. Architecture: The Air-Gapped Multi-Agent Hub
+
+```mermaid
+flowchart TD
+    subgraph Human["Human Maintainer"]
+        HM["Decides P0 Priorities • Approves Architecture • Merges Code"]
+    end
+
+    subgraph Ingress["Ambient Chat Intake (Hermes on Telegram/Matrix)"]
+        BOT["Remote Chat Bot"] -->|Voice Memos & Links| SHIELD["Air-Gap Security Shield"]
+        SHIELD -->|Intake-Only Append| INBOX["0_Inbox/ (Unvetted Notes)"]
+        SHIELD -.->|BLOCKED| RCE["Zero Bash / Shell Privileges ✗"]
+    end
+
+    subgraph Vault["Shared Plain-Markdown PARA Vault"]
+        INBOX --> TRIAGE["Triage & Synthesis"]
+        TRIAGE --> P1["1_Projects/ (Active P0/P1 Milestones)"]
+        TRIAGE --> P2["2_Areas/ (Infrastructure Runbooks)"]
+        TRIAGE --> P3["3_Resources/ (Knowledge & Cheatsheets)"]
+        TRIAGE --> P4["4_Archives/ (Cold Historical Records)"]
+        P1 --> DASH["scripts/generate-dashboard.py"]
+        DASH --> DASH_FILE["00-Dashboard.md (Live Board)"]
+    end
+
+    subgraph Egress["Autonomous Coding Agents"]
+        CLAUDE["Claude Code / Antigravity / Cursor"]
+        CLAUDE -->|Reads Context| P1
+        CLAUDE -->|Enforces Rules| CONV["00-Conventions.md (Constitution)"]
+        CLAUDE -->|Syncs Standup| DASH_FILE
+    end
+
+    Human --> Ingress
+    Human --> Vault
+    Human --> Egress
+```
+
+---
+
+## 3. 5-Minute Quickstart
 
 ### 1. Initialize Your Vault
-Clone the kit and copy the `vault/` starter directory into your desired location:
+Clone the repository and copy the `vault/` starter directory into your desired location:
 ```bash
 git clone https://github.com/umairmsm/second-brain-kit.git
 cd second-brain-kit
 ```
 
 ### 2. Generate Your First Dashboard
-Index your active projects and daily logs without any external dependencies:
+Index your active projects and daily logs without any external heavy dependencies:
 ```bash
 python3 scripts/generate-dashboard.py --vault ./vault
 ```
-Open `vault/00-Dashboard.md` to see your generated project table.
+Open `vault/00-Dashboard.md` to see your generated live project status table.
 
 ### 3. Deploy the Hardened Assistant (Optional)
 Inspect [`hermes/`](hermes/) for production systemd unit templates and sandboxing rules:
@@ -75,7 +105,7 @@ cp hermes/SOUL.md ~/.hermes/SOUL.md
 
 ---
 
-## 3. Directory Layout
+## 4. Directory Layout
 
 ```
 second-brain-kit/
@@ -102,15 +132,22 @@ second-brain-kit/
 
 ---
 
-## 4. Contributing & Community
+## 5. Community & Good First Issues
 
-We welcome contributions! Check out our guidelines in [CONTRIBUTING.md](CONTRIBUTING.md):
-* Adding platform-specific service templates (macOS launchd, Docker Compose).
-* Extending `scripts/generate-dashboard.py` with custom metrics.
-* Contributing specialized runbooks for common self-hosted infrastructure.
+We actively welcome community contributions! Check out our live [Good First Issues on GitHub](https://github.com/umairmsm/second-brain-kit/issues):
+
+| Issue | Category | Description |
+|---|---|---|
+| [#1](https://github.com/umairmsm/second-brain-kit/issues/1) | `runbooks` | **WireGuard / Tailscale Multi-Node Mesh Runbook**: Add zero-trust node-to-node setup guide. |
+| [#2](https://github.com/umairmsm/second-brain-kit/issues/2) | `mcp` | **Read-Only Obsidian Vault MCP Server Template**: Provide lightweight zero-write MCP adapter. |
+| [#3](https://github.com/umairmsm/second-brain-kit/issues/3) | `dashboard` | **Stale Project Warning Flag**: Add `--warn-stale` threshold to `generate-dashboard.py`. |
+| [#4](https://github.com/umairmsm/second-brain-kit/issues/4) | `hermes` | **Discord Bot Adapter Configuration**: Drop-in config template for Discord community servers. |
+| [#5](https://github.com/umairmsm/second-brain-kit/issues/5) | `docs` | **Migration Guide from Notion / Apple Notes**: Step-by-step export & markdown sanitization script. |
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) and our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ---
 
-## 5. License
+## 6. License
 
 MIT License. Copyright (c) 2026 [umairmsm](https://github.com/umairmsm).
