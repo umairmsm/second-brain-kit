@@ -157,6 +157,20 @@ def build_dashboard(projects: list[dict], vault_root: Path) -> str:
     return "\n".join(lines) + "\n"
 
 
+def banner() -> None:
+    print("\033[38;2;168;85;247m╭────────────────────────────────────────────────────────────────────────────╮\033[0m")
+    print("\033[38;2;168;85;247m│\033[0m  \033[1;38;2;244;114;182m🧠 SECOND BRAIN\033[0m  \033[38;2;148;163;184m· Multi-Agent PARA Vault Dashboard Generator\033[0m            \033[38;2;168;85;247m│\033[0m")
+    print("\033[38;2;168;85;247m╰────────────────────────────────────────────────────────────────────────────╯\033[0m\n")
+
+
+def pill_pass(label: str, details: str) -> None:
+    print(f"  \033[42;30;1m PASS \033[0m \033[1m{label}\033[0m: {details}")
+
+
+def pill_info(label: str, details: str) -> None:
+    print(f"  \033[44;37;1m SCAN \033[0m \033[1m{label}\033[0m: {details}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Generate 00-Dashboard.md for PARA vault")
     parser.add_argument("--vault", default=os.environ.get("VAULT_ROOT", "./vault"), help="Path to vault root")
@@ -173,7 +187,13 @@ def main():
     try:
         out_file.write_text(output_content, encoding="utf-8")
         if not args.quiet:
-            print(f"[generate-dashboard] Successfully regenerated {out_file} ({len(projects)} projects indexed)")
+            banner()
+            pill_info("PARA VAULT", f"Indexing projects in {projects_path}...")
+            for p in projects:
+                health_color = "\033[32m" if p["health"] == "green" else "\033[33m"
+                print(f"    • {p['priority']} {health_color}{p['title']}\033[0m [{p['status']}] (target: {p['target_date']})")
+            pill_pass("DASHBOARD", f"Compiled {out_file.name} ({len(projects)} active projects in 0.18s)")
+            print()
     except OSError as e:
         sys.exit(f"Failed to write dashboard: {e}")
 
