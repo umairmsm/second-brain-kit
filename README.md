@@ -10,6 +10,11 @@
 </p>
 
 <p align="center">
+  Crafted with receipts by <b><a href="https://github.com/umairmsm">Umair (@umairmsm)</a></b><br>
+  <i>Applied Homelab AI Practitioner · Bare-Metal Multi-Agent Architectures</i>
+</p>
+
+<p align="center">
   <b>Multi-Agent Knowledge Architecture &amp; Ambient Assistant Kit:</b> A structured, plain-Markdown PARA vault shared across coding agents (Claude Code, Antigravity, Cursor) and a hardened, always-on Telegram assistant (Hermes).
 </p>
 
@@ -22,6 +27,15 @@ Watch `second-brain-kit` in action: remote Telegram memo intake hitting the air-
 <p align="center">
   <img src="assets/demo.gif" alt="second-brain-kit Demo in Action" width="100%">
 </p>
+
+---
+
+## 👨‍💻 Maintainer Field Notes: Why I Built This
+
+> *"I wanted an ambient voice assistant on Telegram that could capture project ideas while I was away, but giving an LLM remote bash access on a homelab server is an invitation for Remote Code Execution (RCE) via prompt injection. I built `second-brain-kit` with a hard air-gap: the Telegram bot has zero shell permissions and can only append raw markdown to `0_Inbox/`. Meanwhile, my local coding agents (Claude Code, Antigravity) read the structured vault as their single source of truth without cloud lock-in."*  
+> — **Umair ([@umairmsm](https://github.com/umairmsm))**, *Applied Homelab AI Practitioner*
+
+👉 *Read the full architectural breakdown on [pirateclasses.com](https://pirateclasses.com).*
 
 ---
 
