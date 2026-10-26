@@ -4,6 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/umairmsm/second-brain-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/umairmsm/second-brain-kit/actions)
+[![Good First Issues](https://img.shields.io/github/issues/umairmsm/second-brain-kit/good%20first%20issue?color=brightgreen&label=Good%20First%20Issues)](https://github.com/umairmsm/second-brain-kit/issues)
 
 ---
 
