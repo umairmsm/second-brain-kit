@@ -29,6 +29,9 @@ jobs:
         run: |
           python3 -m py_compile scripts/*.py
 
+      - name: Dashboard Regression Tests
+        run: python3 -m unittest discover -s tests -v
+
       - name: Gitleaks Secret Scan
         uses: gitleaks/gitleaks-action@v2
         env:
