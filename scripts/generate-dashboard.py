@@ -7,7 +7,7 @@ and writes a plain-Markdown 00-Dashboard.md. Plain Markdown ensures all AI agent
 (Claude Code, Antigravity, local Ollama) can read it without database dependencies.
 
 Usage:
-    generate-dashboard.py [--vault DIR] [--quiet]
+    generate-dashboard.py [--vault DIR] [--quiet] [--stale-days 14]
 """
 
 from __future__ import annotations
@@ -42,6 +42,24 @@ def parse_frontmatter(text: str) -> dict:
     return res
 
 
+def project_updated_at(path: Path, frontmatter: dict) -> datetime | None:
+    """Prefer ISO updatedAt; interpret dates and naive datetimes as UTC."""
+    raw = frontmatter.get("updatedAt")
+    if raw:
+        try:
+            updated = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+            if updated.tzinfo is None:
+                updated = updated.replace(tzinfo=timezone.utc)
+            return updated.astimezone(timezone.utc)
+        except (ValueError, OverflowError):
+            warn(f"Invalid updatedAt in {path}; using file modification time")
+    try:
+        return datetime.fromtimestamp(path.stat().st_mtime, timezone.utc)
+    except OSError as e:
+        warn(f"Failed to read modification time for {path}: {e}")
+        return None
+
+
 def scan_projects(projects_dir: Path) -> list[dict]:
     projects = []
     if not projects_dir.exists():
@@ -70,14 +88,19 @@ def scan_projects(projects_dir: Path) -> list[dict]:
             "health": health,
             "priority": priority,
             "target_date": target_date,
+            "updated_at": project_updated_at(p, fm),
             "path": p
         })
 
     return projects
 
 
-def build_dashboard(projects: list[dict], vault_root: Path) -> str:
-    now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+def build_dashboard(
+    projects: list[dict], vault_root: Path, stale_days: int = 14,
+    now: datetime | None = None,
+) -> str:
+    now = now or datetime.now(timezone.utc)
+    now_utc = now.strftime("%Y-%m-%d %H:%M UTC")
 
     health_icons = {"green": "🟢", "amber": "🟡", "red": "🔴"}
 
@@ -108,7 +131,10 @@ def build_dashboard(projects: list[dict], vault_root: Path) -> str:
     else:
         for p in active:
             icon = health_icons.get(p["health"], "⚪")
-            lines.append(f"| **{p['title']}** | {p['priority']} | {icon} {p['health'].capitalize()} | {p['target_date']} | [`{p['filename']}`](1_Projects/{p['filename']}) |")
+            updated = p.get("updated_at")
+            stale = updated is not None and (now - updated).total_seconds() > stale_days * 86400
+            badge = " ⚠️ Stale" if stale else ""
+            lines.append(f"| **{p['title']}**{badge} | {p['priority']} | {icon} {p['health'].capitalize()} | {p['target_date']} | [`{p['filename']}`](1_Projects/{p['filename']}) |")
 
     lines.extend([
         "",
@@ -175,13 +201,17 @@ def main():
     parser = argparse.ArgumentParser(description="Generate 00-Dashboard.md for PARA vault")
     parser.add_argument("--vault", default=os.environ.get("VAULT_ROOT", "./vault"), help="Path to vault root")
     parser.add_argument("--quiet", action="store_true", help="Suppress output on success")
+    parser.add_argument("--stale-days", type=int, default=14,
+                        help="Mark active projects stale after this many days (default: 14)")
     args = parser.parse_args()
+    if args.stale_days < 0:
+        parser.error("--stale-days must be non-negative")
 
     vault_path = Path(args.vault).resolve()
     projects_path = vault_path / "1_Projects"
 
     projects = scan_projects(projects_path)
-    output_content = build_dashboard(projects, vault_path)
+    output_content = build_dashboard(projects, vault_path, stale_days=args.stale_days)
 
     out_file = vault_path / "00-Dashboard.md"
     try:

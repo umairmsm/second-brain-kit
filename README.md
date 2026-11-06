@@ -108,6 +108,15 @@ Index your active projects and daily logs without any external heavy dependencie
 ```bash
 python3 scripts/generate-dashboard.py --vault ./vault
 ```
+
+Active projects untouched for more than 14 days show an `⚠️ Stale` badge in the
+dashboard. Set a different threshold with `--stale-days 7` (a non-negative integer).
+The generator uses ISO 8601 `updatedAt` frontmatter when valid, otherwise the
+file's modification time. Dates such as `2026-10-14` mean midnight UTC; datetimes
+without a timezone are also treated as UTC, and explicit offsets are respected.
+Exactly-at-threshold and future timestamps are not stale. Project notes, health
+and status are never changed by this badge.
+
 Open `vault/00-Dashboard.md` to see your generated live project status table.
 
 ### 3. Deploy the Hardened Assistant (Optional)
